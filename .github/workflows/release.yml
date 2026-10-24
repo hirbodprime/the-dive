@@ -1,0 +1,31 @@
+# Builds the site on GitHub (the 1 GB server can't spare the RAM for `next build`) and publishes a
+# ready-to-run bundle as the "latest" release. The server pulls it with deploy/deploy.sh.
+name: release
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: write }
+concurrency: { group: release, cancel-in-progress: true }
+jobs:
+  build:
+    runs-on: ubuntu-24.04            # same glibc as the server, for better-sqlite3's native binary
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+        env: { SITE_URL: 'https://hirbodaflaki.com', NEXT_TELEMETRY_DISABLED: '1' }
+      - name: Bundle
+        run: |
+          mkdir -p bundle
+          cp -r .next/standalone/. bundle/
+          cp -r .next/static bundle/.next/static
+          cp -r public bundle/public
+          rm -rf bundle/data
+          tar -czf the-dive.tar.gz -C bundle .
+      - name: Publish
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest the-dive.tar.gz --title "Latest build" --notes "Built from ${GITHUB_SHA::7}. Deployed with deploy/deploy.sh." --latest

@@ -1,0 +1,12 @@
+node_modules
+.next
+data/*.db*
+next-env.d.ts
+*.tsbuildinfo
+.env*
+!.env.example
+# personal working notes + original photo (not part of the site)
+BRIEF.md
+scripts/source.jpg
+# Mixamo model: fetched by scripts/fetch-model.mjs, not redistributed here
+public/assets/models/netrunner.glb

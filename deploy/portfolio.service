@@ -1,0 +1,22 @@
+[Unit]
+Description=The Dive (hirbodaflaki.com)
+After=network.target
+
+[Service]
+User=portfolio
+Group=portfolio
+WorkingDirectory=/opt/portfolio/current
+EnvironmentFile=/etc/portfolio.env
+Environment=NODE_ENV=production PORT=8050 HOSTNAME=127.0.0.1 DATA_DIR=/opt/portfolio/data NODE_OPTIONS=--max-old-space-size=192
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=3
+MemoryMax=280M
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/portfolio/data
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
