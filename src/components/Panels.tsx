@@ -191,6 +191,11 @@ function Hero() {
         <button className="btn" onClick={() => set({ reading: true })}>About me</button>
         <a className="btn ghost" href="/cv">⏏ Recruiter fast lane</a>
       </div>
+      <a className="hero-src" href={profile.source} target="_blank" rel="noopener">
+        <span className="hs-tag">◉ OPEN SOURCE</span>
+        <span className="hs-cmd"><b>$</b> git clone {profile.source.replace('https://', '')}<i aria-hidden>▮</i></span>
+        <span className="hs-meta">MIT · every shader, scene &amp; daemon · fork the code, not the runner ↗</span>
+      </a>
     </div>
   );
 }

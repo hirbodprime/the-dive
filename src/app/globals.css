@@ -304,3 +304,16 @@ input:focus, textarea:focus { border-color: var(--cyan); outline: none; }
   .fx-grain, .tracking-bars { animation: none; }
   .hero-name span { animation: none !important; opacity: 1 !important; }
 }
+/* hero: "this site is open source" terminal chip */
+.hero-src { position: relative; display: inline-grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 2px; align-items: center; margin-top: 18px; padding: 9px 16px 9px 12px; max-width: 100%; text-decoration: none; color: #d6fff6; background: linear-gradient(90deg, rgba(0, 240, 255, 0.1), rgba(4, 7, 14, 0.85) 60%); border: 1px solid rgba(0, 240, 255, 0.45); clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: border-color 0.15s, background 0.15s; }
+.hero-src::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.06) 0 1px, transparent 1px 3px); pointer-events: none; }
+.hero-src:hover { border-color: var(--cyan); background: linear-gradient(90deg, rgba(0, 240, 255, 0.22), rgba(4, 7, 14, 0.9) 70%); }
+.hero-src:hover .hs-cmd { animation: hs-glitch 0.3s steps(2) 2; }
+.hs-tag { grid-row: span 2; font: 700 11px var(--display); letter-spacing: 0.22em; color: #001014; background: var(--cyan); padding: 5px 8px; align-self: stretch; display: grid; place-items: center; }
+.hs-cmd { font: 22px/1 var(--vt); color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-shadow: 0 0 8px rgba(0, 240, 255, 0.6); }
+.hs-cmd b { color: var(--yellow); font-weight: 400; margin-right: 4px; }
+.hs-cmd i { font-style: normal; color: var(--cyan); margin-left: 3px; animation: hs-blink 1s steps(1) infinite; }
+.hs-meta { font: 600 11.5px var(--display); letter-spacing: 0.08em; color: #8fe9f0; }
+@keyframes hs-blink { 50% { opacity: 0; } }
+@keyframes hs-glitch { 0% { transform: translate(2px, 0); text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); } 100% { transform: translate(-1px, 0); text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); } }
+@media (max-width: 640px) { .hs-cmd { font-size: 17px; } .hs-meta { display: none; } .hs-tag { grid-row: auto; } }

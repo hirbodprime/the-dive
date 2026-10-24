@@ -8,6 +8,7 @@ export const profile = {
   email: 'hirbodprime@gmail.com',
   github: 'https://github.com/hirbodprime',
   githubUser: 'hirbodprime',
+  source: 'https://github.com/hirbodprime/the-dive',   // this site's own repo
   linkedin: 'https://www.linkedin.com/in/hirbodprime/',
   cv: '/cv',
   tagline: 'Build something useful. Understand how it works. Keep improving it.',
