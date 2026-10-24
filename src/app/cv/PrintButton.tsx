@@ -1,2 +1,2 @@
 'use client';
-export function PrintButton() { return <button onClick={() => window.print()}>⎙ Print / save PDF</button>; }
+export function PrintButton() { return <button onClick={() => window.print()}>Download PDF</button>; }
