@@ -13,7 +13,6 @@ export const arcs: RepoArc[] = [
   { repo: 'redis/redis', from: { name: 'Catania', lat: 37.5, lng: 15.09 }, to: HOME, note: 'Salvatore Sanfilippo wrote Redis in Sicily, 2009.' },
   { repo: 'postgres/postgres', from: { name: 'Berkeley', lat: 37.87, lng: -122.27 }, to: HOME, note: 'Grew out of the POSTGRES project at UC Berkeley, 1986.' },
   { repo: 'hirbodprime/dobare', mine: true, from: TEHRAN, to: HOME, note: 'Built in Tehran, carried to Duisburg.' },
-  { repo: 'hirbodprime/jobcollector', mine: true, from: TEHRAN, to: HOME, note: 'Built in Tehran, carried to Duisburg.' },
   { repo: 'hirbodprime/blackjack', mine: true, from: TEHRAN, to: { name: 'Istanbul', lat: 41.01, lng: 28.98 }, note: 'A Telegram bot with hundreds of daily players.' },
   { repo: 'hirbodprime/artonomy', mine: true, from: HOME, to: TEHRAN, note: 'Founded from Duisburg, built with a team in Tehran.' },
 ];

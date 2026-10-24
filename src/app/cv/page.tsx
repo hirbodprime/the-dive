@@ -18,7 +18,9 @@ const GROUPS: Record<string, string> = { CORE: 'Backend', DATA: 'Data', SYSTEMS:
 
 const jobs = experience.filter((j) => !j.side).sort((a, b) => b.from.localeCompare(a.from));
 const sideJobs = experience.filter((j) => j.side);
-const featured = projects.slice(0, 5).sort((a, b) => b.year.localeCompare(a.year));
+// A certificate from a school already under Education (the vocational diploma) would print twice.
+const courses = certs.filter((c) => !education.some((e) => e.name === c.issuer)).sort((a, b) => b.date.localeCompare(a.date));
+const featured = [...projects].sort((a, b) => b.year.localeCompare(a.year));
 
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'Person', name: profile.name, jobTitle: 'Backend Software Engineer',
@@ -105,6 +107,10 @@ export default function CV() {
 
         <section>
           <h2>Selected projects</h2>
+          <Row when="2026">
+            <h3>The Dive — this portfolio<a className="cv-link" href={profile.source}>{host(profile.source)}</a></h3>
+            <p>Interactive real-time 3D portfolio (Next.js, React Three Fiber, custom GLSL shaders), open source under MIT, self-hosted on a Linux VPS with CI/CD.</p>
+          </Row>
           {featured.map((p) => {
             const link = p.links.Website || p.links.GitHub || Object.values(p.links).find(Boolean);
             return (
@@ -114,15 +120,11 @@ export default function CV() {
               </Row>
             );
           })}
-          <Row when="2026">
-            <h3>The Dive — this portfolio<a className="cv-link" href={profile.source}>{host(profile.source)}</a></h3>
-            <p>Interactive real-time 3D portfolio (Next.js, React Three Fiber, custom GLSL shaders), open source under MIT, self-hosted on a Linux VPS with CI/CD.</p>
-          </Row>
         </section>
 
-        <section>
+        <section className="cv-certs">
           <h2>Certifications</h2>
-          {[...certs].sort((a, b) => b.date.localeCompare(a.date)).map((c) => (
+          {courses.map((c) => (
             <Row key={c.id} when={date(c.date)}>
               <h3>{c.name}</h3>
               <p className="cv-org">{c.issuer}<span>{[c.hours && ` · ${c.hours} h`, c.score && ` · score ${c.score}`].filter(Boolean).join('')}</span></p>

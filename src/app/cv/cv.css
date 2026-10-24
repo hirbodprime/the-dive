@@ -57,20 +57,23 @@ html:has(.cv-page), body:has(.cv-page) { background: #eef0f3; overflow: auto; he
   html:has(.cv-page), body:has(.cv-page) { background: #fff; }
   .cv-page { padding: 0; min-height: 0; }
   .cv-nav { display: none; }
-  .cv { max-width: none; padding: 0; box-shadow: none; font-size: 9.4pt; line-height: 1.36; }
+  .cv { max-width: none; padding: 0; box-shadow: none; font-size: 9.4pt; line-height: 1.32; }
   .cv h1 { font-size: 24pt; }
   .cv-title { font-size: 12pt; }
   .cv-contact, .cv-when, .cv-skills dt { font-size: 9pt; }
   .cv h2 { break-after: avoid; font-size: 9pt; }
-  .cv section { margin-top: 10px; }
+  .cv section { margin-top: 8px; }
   .cv h2 { margin-bottom: 5px; }
   .cv-head { padding-bottom: 12px; }
   .cv-photo { width: 30mm; height: 38.6mm; }
-  .cv-row { padding: 2.5px 0; }
+  .cv-row { padding: 2px 0; }
   .cv ul { margin-top: 2px; }
   .cv li { margin: 0; }
   .cv-head { break-inside: avoid; }
-  .cv-foot { margin-top: 10px; padding-top: 6px; font-size: 8pt; }
+  .cv-certs .cv-what { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }   /* one line per certificate keeps the CV on two pages */
+  .cv-certs h3 { font-size: inherit; }
+  .cv-certs .cv-org { margin: 0; font-size: 8.6pt; }
+  .cv-foot { margin-top: 6px; padding-top: 4px; font-size: 8pt; }
   .cv a { color: var(--ink); }
   * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
